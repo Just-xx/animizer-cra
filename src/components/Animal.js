@@ -6,7 +6,6 @@ import styles from '../styles/Animal.module.scss'
 
 const Animal = ({ animal }) => {
 
-  console.log(animal)
   const { imgUrl, isFetched, newImg, error, isVideo } = useAnimal(animal);
 
   return (
@@ -39,7 +38,7 @@ const Animal = ({ animal }) => {
           }
           <div className={styles.btns}>
               <Button asHref to={imgUrl}>Download</Button>
-              <Button asHref to="" onClick={newImg}>Next</Button>
+              <Button asBtn onClick={newImg}>Next</Button>
           </div>
         </>
       )}

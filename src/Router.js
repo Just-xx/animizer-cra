@@ -7,7 +7,7 @@ const Router = () => {
   return (
       <Routes>
           <Route path="/" element={<IndexPage />} />
-          <Route path=":animal" element={<AnimalPage animalStr="dog" />} />
+          <Route path=":animal" element={<AnimalPage />} />
       </Routes>
   );
 };

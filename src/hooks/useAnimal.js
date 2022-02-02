@@ -1,33 +1,12 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-
-const AXOLOTL_API = 'https://axoltlapi.herokuapp.com/';
-const DOG_API = 'https://random.dog/woof.json';
-const CAT_API = 'https://api.thecatapi.com/v1/images/search';
-
-const getAxolotl = async (setUrl, setIsFetched) => {
-    const res = await axios.get(AXOLOTL_API);
-    setUrl(res.data.url);
-    setIsFetched(true);
-}
-
-const getCat = async (setUrl, setIsFetched) => {
-    const res = await axios.get(CAT_API);
-    setUrl(res.data[0].url);
-    setIsFetched(true);
-}
-
-const getDog = async (setUrl, setIsFetched, setIsVideo) => {
-    const res = await axios.get(DOG_API);
-    setUrl(res.data.url);
-    checkForVideo(res.data.url, setIsVideo)
-    setIsFetched(true);
-}
+import { animalsData } from '../utils/animalsData'
 
 
-const checkForVideo = (url, setIsVideo) => {
+const checkForVideo = (url) => {
     if (url.endsWith('.mp4') || url.endsWith('.webm'))
-        setIsVideo(true)
+        return true;
+    return false;
 }
 
 export const useAnimal = (animal) => {
@@ -37,19 +16,23 @@ export const useAnimal = (animal) => {
     const [error, setError] = useState(false);
     const [isVideo, setIsVideo] = useState(false);
 
+    const manageUrl = url => {
+        setImgUrl(url);
+        setIsFetched(true);
+        setIsVideo(checkForVideo(url));
+    }
 
-
-    const getImg = async () => {
-        try {
-            switch (animal) {
-                case 'axolotl': getAxolotl(setImgUrl, setIsFetched); break;
-                case 'dog': getDog(setImgUrl, setIsFetched, setIsVideo); break;
-                case 'cat': getCat(setImgUrl, setIsFetched); break;
+    const getImg = () => {
+        animalsData.forEach(animalData => {
+            if (animalData.animal === animal) {
+                axios.get(animalData.api)
+                .then(res => animalData.urlKeys.reduce((prev, val) => prev[val], res))
+                .then(manageUrl)
+                .catch(err => {
+                    setError(true)
+                })
             }
-        }
-        catch (e) {
-            setError(true);
-        }
+        })
     }
 
     const newImg = () => {
