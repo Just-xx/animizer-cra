@@ -42,7 +42,7 @@ export const useAnimal = (animal) => {
         getImg();
     }
 
-    useEffect(getImg, [])
+    useEffect(getImg, [animal])
     
     return {
         imgUrl,
