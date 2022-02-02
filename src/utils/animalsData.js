@@ -10,11 +10,5 @@ export const animalsData = [
         api: 'https://api.thecatapi.com/v1/images/search',
         cors: true, 
         urlKeys: ['data', 0, 'url']
-    },
-    {
-        animal: 'axolotl',
-        api: 'https://axoltlapi.herokuapp.com/',
-        cors: false, 
-        urlKeys: ['data', 'url']
     }
 ]

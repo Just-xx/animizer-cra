@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { animalsData } from '../utils/animalsData'
 
-
 const checkForVideo = (url) => {
     if (url.endsWith('.mp4') || url.endsWith('.webm'))
         return true;

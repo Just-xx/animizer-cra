@@ -12,6 +12,7 @@
 .animalImg {
     max-width: 80vw;
     max-height: 50vh;
+    min-height: 350px;
     object-fit: contain;
     border: 6px solid $secondary;
     box-shadow: $shadowSm;
@@ -48,4 +49,5 @@
 .fetchError {
     color: $secondary;
     font-weight: 700;
+    text-align: center;
 }
