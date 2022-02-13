@@ -12,7 +12,11 @@
     font-weight: 300;
     color: $secondary;
     text-align: center;
-    margin: 0 40px;
+    margin: 0 20px;
+    @media screen and (max-width: 600px) {
+        font-size: 2.2rem;
+        font-weight: 500;
+    }
 }
 
 .smTitle {
@@ -20,6 +24,7 @@
     font-weight: 600;
     color: #302f3e;
     text-align: center;
+    margin-top: 5px;
 }
 
 .links {
@@ -27,10 +32,14 @@
     justify-content: center;
     align-items: center;
     margin-top: 80px;
+    
 
     @media screen and (max-width: 720px) {
         flex-direction: column;
         margin-top: 40px;
+        width: 60%;
+        max-width: 300px;
+        min-width: 160px;
     }
 
 
@@ -45,6 +54,7 @@
         @media screen and (max-width: 720px) {
             margin-left: 0;
             margin-top: 12px;
+            width: 100%;
         }
     }
 }
